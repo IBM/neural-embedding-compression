@@ -1,0 +1,7 @@
+guild.yml
+*.vscode
+.idea/
+__pycache__/
+run.sh
+download.sh
+*tfevents*
