@@ -1,6 +1,6 @@
 # Neural Embedding Compression for Efficient Multi-Task Earth Observation Modelling
 
-https://arxiv.org/abs/2403.17886
+[Paper](https://arxiv.org/abs/2403.17886)
 
 ## Carlos Gomes, Thomas Brunschwiler
 
@@ -53,7 +53,7 @@ python find_average_size.py --model 'mae_vit_compress_adapter' --model_path <pat
 `--eval_size` can be used to choose a subset of the data to evaluate on
 `--batch_size` determines the number of samples that are compressed jointly.
 
-For the potsdam dataset, the data path is ignored and instead the dataset used is the one specified in `../Semantic Segmentation/configs/vit_compress/potsdam_dataset.py`
+For the Potsdam dataset, the data path is ignored and instead the dataset used is the one specified in `../Semantic Segmentation/configs/vit_compress/potsdam_dataset.py`
 
 ##### Finetuning Classification
 
@@ -127,6 +127,6 @@ Please consider citing our work if it is useful for you
 
 ## References
 
-This repository is based on https://github.com/ViTAE-Transformer/Remote-Sensing-RVSA and the original [MAE](https://github.com/facebookresearch/mae) repository.
+This repository is based on [Advancing Plain Vision Transformer Towards Remote Sensing Foundation Model](https://github.com/ViTAE-Transformer/Remote-Sensing-RVSA) and the original [MAE](https://github.com/facebookresearch/mae) repository.
 
 Compression models are built using the [CompressAI](https://github.com/InterDigitalInc/CompressAI/tree/master) library.
