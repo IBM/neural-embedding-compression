@@ -9,8 +9,6 @@
 # BEiT: https://github.com/microsoft/unilm/tree/master/beit
 # --------------------------------------------------------
 
-# Copyright contributors to the neural-embedding-compression project
-
 import argparse
 import datetime
 import json
@@ -48,7 +46,13 @@ def get_args_parser():
         "--batch_size",
         default=64,
         type=int,
-        help="Batch size per GPU (effective batch size is batch_size * accum_iter * # gpus",
+        help="Batch size per GPU (effective batch size is batch_size * accum_iter * # gpus)",
+    )
+    parser.add_argument(
+        "--eval_batch_size",
+        default=64,
+        type=int,
+        help="Batch size per GPU for eval.(effective batch size is batch_size * accum_iter * # gpus). For the final eval, only 1 gpu is used, so the effective batch size is the same as this)",
     )
     parser.add_argument("--epochs", default=400, type=int)
     parser.add_argument(
@@ -311,7 +315,7 @@ def main(args):
     data_loader_eval = torch.utils.data.DataLoader(
         dataset_eval,
         sampler=sampler_eval,
-        batch_size=64,
+        batch_size=args.eval_batch_size,
         num_workers=args.num_workers,
         pin_memory=args.pin_mem,
         drop_last=False,
@@ -435,8 +439,17 @@ def main(args):
     model_without_ddp.update()
     # do this without ddp
 
+    dataloader = torch.utils.data.DataLoader(
+        dataset_eval,
+        batch_size=args.eval_batch_size,
+        num_workers=args.num_workers,
+        pin_memory=args.pin_mem,
+        drop_last=False,
+        shuffle=False,
+    )
+
     if not args.distributed or global_rank == 0:
-        embedding_sizes = findEmbeddingSize(model_without_ddp, data_loader_eval)
+        embedding_sizes = findEmbeddingSize(model_without_ddp, dataloader)
         av_size = (embedding_sizes.sum() / args.eval_size) * 8
         print(f"Average bits per image: {av_size}")
         log_writer.add_scalar("Average bits", av_size)

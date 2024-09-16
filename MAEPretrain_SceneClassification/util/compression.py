@@ -1,4 +1,3 @@
-# Copyright contributors to the neural-embedding-compression project
 
 from typing import Any, Dict, Mapping, cast
 
@@ -92,13 +91,4 @@ def findEmbeddingSize(model, dataloader, extract_data_ld=None, device=0):
             bytes_used.append(total_bytes_batch)
 
     bytes_used = torch.tensor(bytes_used)
-    if not is_dist_avail_and_initialized():
-        return bytes_used
-    bytes_used = bytes_used.to(device=device)
-    dist.barrier()
-    all_bytes_used = [
-        torch.zeros_like(bytes_used) for _ in range(dist.get_world_size())
-    ]  # world_size is the total number of gpu processes you are running. 4 in your case.
-    print(dist.get_world_size())
-    all_bytes_used = torch.cat(dist.all_gather(all_bytes_used, bytes_used))
-    return all_bytes_used
+    return bytes_used
