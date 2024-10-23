@@ -16,12 +16,13 @@ As repositories of large scale data in earth observation (EO) have grown, so hav
 
 Environment:
 
-- Python 3.8.13
+- Python 3.10.4
 - Pytorch 1.11.0
 - torchvision 0.12.0
 - timm 0.9.12
 - mmcv-full 1.5.0
 - compressai 1.2.4
+- torchgeo 0.3.1
 - `pip install -e .`
 
 #### Pretraining & Finetuning-Classification
