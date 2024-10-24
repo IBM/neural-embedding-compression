@@ -1,7 +1,6 @@
 dataset_type = "PotsdamDataset"
-data_root = "/dccstor/geofm-pre/mmseg_potsdam"
+data_root = "path_to_data_root"
 ignore_index = 255
-# data_root = "/dccstor/geofm-pre/potsdam_ready_like_paper"
 img_norm_cfg = dict(
     mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True
 )

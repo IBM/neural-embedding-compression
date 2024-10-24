@@ -23,6 +23,7 @@ Environment:
 - mmcv-full 1.5.0
 - compressai 1.2.4
 - torchgeo 0.3.1
+- yapf 0.33.0
 - `pip install -e .`
 
 #### Pretraining & Finetuning-Classification
