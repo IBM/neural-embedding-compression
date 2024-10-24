@@ -76,6 +76,10 @@ Since we use MMSegmentation we only provide the necessary config and backbone fi
 
 - Install mmcv-full with the cuda_version that matches your torch cuda version: `mim install mmcv-full==1.5.0 -f https://download.openmmlab.com/mmcv/dist/{cuda_version}/{torch_version}/index.html`
 
+- `cd mmsegmentation`
+
+- `pip install .`
+
 [Prepare potsdam dataset](https://mmsegmentation.readthedocs.io/en/0.x/dataset_prepare.html#isprs-potsdam)
 
 Edit the `potsdam_dataset.py` configuration file in `configs/vit_compress` so the data_root points to your data directory.
